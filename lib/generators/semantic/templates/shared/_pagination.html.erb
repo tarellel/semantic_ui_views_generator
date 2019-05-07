@@ -1,0 +1,7 @@
+<%- if !@pagy.nil? && @pagy.pages > 1 %>
+  <div class="ui one column stackable center aligned page grid">
+     <div class="column twelve wide">
+      <%== pagy_semantic_nav(@pagy) %>
+    </div>
+  </div>
+<% end %>

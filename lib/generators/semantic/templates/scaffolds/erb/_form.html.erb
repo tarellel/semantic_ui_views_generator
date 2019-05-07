@@ -1,0 +1,21 @@
+<%%= form_with(model: @<%= singular_table_name %>, local: true, class: 'ui form') do |f| %>
+  <%% if @<%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+      <ul>
+      <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+<% attributes.each do |attribute| -%>
+  <div class="field">
+    <%%= f.label :<%= attribute.name %> %>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+  </div>
+<% end -%>
+  <div class="actions">
+    <%%= f.submit class: 'ui button' %>
+  </div>
+<%% end %>

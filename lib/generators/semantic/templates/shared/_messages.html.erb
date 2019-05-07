@@ -1,0 +1,12 @@
+<% if flash.any? %>
+  <% flash.each do | msg_type, message | %>
+    <% flash.delete(:timedout) %>
+    <%- next unless !message.nil? && message.to_s.length.positive? %>
+    <div class="ui <%= flash_class(msg_type) %> message transition">
+      <i class="close icon"></i>
+      <div class="header">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

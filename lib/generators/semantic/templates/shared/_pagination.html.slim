@@ -1,0 +1,4 @@
+- if !@pagy.nil? && @pagy.pages > 1
+  .ui.one.column.stackable.center.aligned.page.grid
+    .column.twelve.wide
+      == pagy_semantic_nav(@pagy)

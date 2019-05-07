@@ -1,0 +1,15 @@
+<%- if options[:metatags] -%>
+<h3 class="ui header"><%%%= title('<%%= singular_table_name.titleize %>') %></h3>
+<%- else -%>
+<h3 class="ui header">Show <%%= singular_table_name.titleize %></h3>
+<%- end -%>
+
+<%% attributes.reject(&:password_digest?).each do |attribute| -%>
+<p>
+  <strong><%%= attribute.human_name %>:</strong>
+  <%%%= @<%%= singular_table_name %>.<%%= attribute.name %> %>
+</p>
+<%% end -%>
+
+<%%%= link_to 'Edit', edit_<%%= singular_table_name %>_path(@<%%= singular_table_name %>) %> |
+<%%%= link_to 'Back', <%%= index_helper %>_path %>

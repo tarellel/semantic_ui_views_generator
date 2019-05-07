@@ -1,0 +1,9 @@
+<%- if options[:metatags] -%>
+%h3.ui.header= title('New <%%= singular_table_name.titleize %>')
+<%- else -%>
+%h3.ui.header New<%%= singular_table_name.titleize %>
+<%- end -%>
+
+= render 'form', <%%= singular_table_name %>: @<%%= singular_table_name %>
+
+= link_to 'Back', <%%= index_helper %>_path
