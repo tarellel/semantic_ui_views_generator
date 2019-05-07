@@ -30,7 +30,7 @@ Usage:
 
 Options:
 Options:
--t, [--template-engine=TEMPLATE_ENGINE]     # Indicates when to generate template engine
+-t, [--template-engine=TEMPLATE_ENGINE]     # Indicates when to generate using a designated template engine (erb, slim, haml)
                                             # Default: erb
 --simpleform                                # Indicates if simpleform will be used (when used will generate a Semantic Ui based simple_form initialzer)
                                             # Default: false
