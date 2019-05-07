@@ -32,11 +32,11 @@ Options:
 Options:
 -t, [--template-engine=TEMPLATE_ENGINE]     # Indicates when to generate using a designated template engine (erb, slim, haml)
                                             # Default: erb
---simpleform                                # Indicates if simpleform will be used (when used will generate a Semantic Ui based simple_form initialzer)
+--simpleform                                # Indicates if simple_form is to be used to generate the forms
                                             # Default: false
 --pagination                                # Specify if you want to add pagination to the index pages
                                             # Defaults: false (requires Pagy to use pagination)
---metatags                                  # If you want the pages titles to use the metatags gem function for the page title
+--metatags                                  # If you want the pages titles to use the meta-tags gem function for the page title
                                             # Default: false
 ```
 
