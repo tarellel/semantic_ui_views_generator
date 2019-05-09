@@ -12,6 +12,13 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'semantic_ui_views_generator', group: :development
+
+# Before continuing make sure you have the semantic-ui-sass gem installed and included in your application.scss file
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
+# application.scss
+@import 'semantic-ui';
+
 ```
 
 And then execute:
