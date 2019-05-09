@@ -1,4 +1,4 @@
-# SemanticViewsGenerator
+# Semantic-UI Views Generator
 
 ![](https://ruby-gem-downloads-badge.herokuapp.com/semantic_ui_views_generator?type=total)  [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT) [![Gem Version](https://badge.fury.io/rb/semantic_ui_views_generator.svg)](https://badge.fury.io/rb/semantic_ui_views_generator)
 
@@ -44,6 +44,8 @@ Options:
 --pagination                                # Specify if you want to add pagination to the index pages
                                             # Defaults: false (requires Pagy to use pagination)
 --metatags                                  # If you want the pages titles to use the meta-tags gem function for the page title
+                                            # Default: false
+--layout                                    # Over-write your application layout file with a Semantic UI based layout
                                             # Default: false
 ```
 

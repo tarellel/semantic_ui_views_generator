@@ -8,6 +8,7 @@ module Semantic
 
       class_option :template_engine, type: :string, default: 'erb', aliases: '-t', desc: 'Set template engine to generate the views with'
       # Boolean flags that can be flagged by adding to the generator call ie: --pagination or --metag_tags
+      class_option :layout, type: :boolean, default: false, aliases: "-l", desc: 'Over-write your application layout file with a Semantic UI based layout'
       class_option :metatags, type: :boolean, default: false, aliases: "-m", desc: 'If views will assign pages title using metatags gem'
       class_option :pagination, type: :boolean, default: false, aliases: '-p', desc: 'Toggle if pagination will be used with the index view/controller (based off of Pagy)'
       class_option :simpleform, type: :boolean, default: false, aliases: '-sf', desc: 'Enable SimpleForms for the form generating'
@@ -20,7 +21,7 @@ module Semantic
       end
 
       def create_layout
-        template "layouts/application.html.#{options[:template_engine]}.tt", "app/views/layouts/application.html.#{options[:template_engine]}", force: true
+        template("layouts/application.html.#{options[:template_engine]}.tt", "app/views/layouts/application.html.#{options[:template_engine]}", force: true) if options[:layout]
       end
 
       def copy_flash_messages
@@ -28,15 +29,12 @@ module Semantic
       end
 
       def copy_shared_pagination
-        if options[:pagination]
-          copy_file "shared/_pagination.html.#{options[:template_engine]}", "app/views/shared/_pagination.html.#{options[:template_engine]}", force: true
-        end
+        copy_file("shared/_pagination.html.#{options[:template_engine]}", "app/views/shared/_pagination.html.#{options[:template_engine]}", force: true) if options[:pagination]
       end
 
       def copy_simpleforms
         if options[:simpleform]
           copy_file 'initialzers/simple_form.rb', 'config/initialzers/simple_form.rb', force: true
-
           copy_file "simple_form/_form.html.#{options[:template_engine]}", "lib/templates/#{options[:template_engine]}/scaffold/_form.html.#{options[:template_engine]}", force: true
         end
       end
