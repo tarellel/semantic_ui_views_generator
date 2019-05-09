@@ -34,7 +34,7 @@ module Semantic
 
       def copy_simpleforms
         if options[:simpleform]
-          copy_file 'initialzers/simple_form.rb', 'config/initialzers/simple_form.rb', force: true
+          copy_file 'initializers/simple_form.rb', 'config/initializers/simple_form.rb', force: true
           copy_file "simple_form/_form.html.#{options[:template_engine]}", "lib/templates/#{options[:template_engine]}/scaffold/_form.html.#{options[:template_engine]}", force: true
         end
       end

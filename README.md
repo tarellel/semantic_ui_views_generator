@@ -108,4 +108,4 @@ rails g semantic:install --template_engine=slim --simpleform
 
 * If you like to use the [meta-tags](https://github.com/kpumuk/meta-tags) gem to add page titles based on the views.
 * Pagination defaults to using [Pagy](https://github.com/ddnexus/pagy) on the index pages.
-* With [simple_form](https://github.com/plataformatec/simple_form) it generates a `config/initialzers/simple_form.rb` file for your simple_form formatting.
+* With [simple_form](https://github.com/plataformatec/simple_form) it generates a `config/initializers/simple_form.rb` file for your simple_form formatting.
