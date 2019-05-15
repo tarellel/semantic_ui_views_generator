@@ -40,24 +40,26 @@ module Semantic
       end
 
       def inject_helpers
-        helper_str = <<-HELPER
+        pagy_helper = (options[:pagination] ? 'include Pagy::Frontend' : '')
+        helper_str = <<~HELPER
+        #{pagy_helper}
 
-  # For generating SemanitcUI based flash[:notices]
-  def flash_class(level)
-    case level
-    when 'success'
-      'positive'
-    when 'error'
-      'negative'
-    when 'alert'
-      'negative'
-    when 'notice'
-      'info'
-    else
-      'info'
-    end
-  end
-HELPER
+        # For generating SemanitcUI based flash[:notices]
+        def flash_class(level)
+          case level
+          when 'success'
+            'positive'
+          when 'error'
+            'negative'
+          when 'alert'
+            'negative'
+          when 'notice'
+            'info'
+          else
+            'info'
+          end
+        end
+      HELPER
         inject_into_file 'app/helpers/application_helper.rb', helper_str, after: "module ApplicationHelper\n", force: true
       end
     end

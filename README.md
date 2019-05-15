@@ -83,6 +83,10 @@ rails g semantic:install --template_engine=slim
 Ensure you have [Pagy](https://github.com/ddnexus/pagy) gem installed
 ```ruby
 gem 'pagy'
+
+# Make sure you have the bootstrap pagy helper included
+# config/initializers/pagy.rb
+require 'pagy/extras/semantic'
 ```
 
 
