@@ -1,0 +1,37 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    %h2.ui.center.aligned.dividing.header.teal
+      %i.sign.in.icon
+      <%- if options[:metatags] %>
+      = title('Log in')
+      <% else -%>
+      | Log in
+      <%- end %>
+    .ui.large.form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email
+          .ui.left.icon.input
+            = f.email_field :email, autofocus: true ,placeholder:"Email"
+            %i.user.icon
+        .field
+          = f.label :password
+          .ui.left.icon.input
+            = f.password_field :password, autocomplete: "off" ,placeholder:"Password"
+            %i.lock.icon
+        - if devise_mapping.rememberable?
+          .ui.checkbox
+            = f.check_box :remember_me
+            = f.label :remember_me
+            %br
+        .actions
+          = f.submit "Log in", class: "ui submit button fluid teal"
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

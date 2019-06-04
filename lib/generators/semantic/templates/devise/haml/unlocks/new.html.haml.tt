@@ -1,0 +1,27 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    %h2.ui.center.aligned.dividing.header.teal
+      %i.lock.icon
+      <%- if options[:metatags] %>
+      = title('Resend unlock instructions')
+      <% else -%>
+      | Resend unlock instructions
+      <%- end %>
+    %div{class: "ui form large #{"error" if resource.errors.any?}"}
+      = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        = render 'devise/shared/error_messages', resource: resource
+        .field
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .actions
+          = f.submit "Resend unlock instructions", class: "ui submit button fluid teal"
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

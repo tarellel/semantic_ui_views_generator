@@ -1,0 +1,28 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    <%- if options[:metatags] %>
+    h2.ui.center.aligned.dividing.header.teal
+      i.sign.in.icon
+      = title('Log in')
+    <%- else %>
+    h2.ui.center.aligned.dividing.header.teal
+      i.sign.in.icon
+      | Log in
+    <%- end %>
+    .ui.large.form
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.input :email, required: false, autofocus: true, input_html: { autocomplete: 'email' }
+          = f.input :password, required: false, input_html: { autocomplete: 'current-password' }
+          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        .actions
+          = f.button :submit, 'Log in'
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+css:
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

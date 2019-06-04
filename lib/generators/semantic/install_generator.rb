@@ -1,4 +1,5 @@
 require 'rails/generators'
+require_relative 'devise_generator'
 
 module Semantic
   module Generators
@@ -8,6 +9,7 @@ module Semantic
 
       class_option :template_engine, type: :string, default: 'erb', aliases: '-t', desc: 'Set template engine to generate the views with'
       # Boolean flags that can be flagged by adding to the generator call ie: --pagination or --metag_tags
+      class_option :devise, type: :boolean, default: false, desc: 'If views for devise will be required by the generator'
       class_option :layout, type: :boolean, default: false, aliases: "-l", desc: 'Over-write your application layout file with a Semantic UI based layout'
       class_option :metatags, type: :boolean, default: false, aliases: "-m", desc: 'If views will assign pages title using metatags gem'
       class_option :pagination, type: :boolean, default: false, aliases: '-p', desc: 'Toggle if pagination will be used with the index view/controller (based off of Pagy)'
@@ -43,24 +45,28 @@ module Semantic
         pagy_helper = (options[:pagination] ? 'include Pagy::Frontend' : '')
         helper_str = <<~HELPER
         #{pagy_helper}
-
-        # For generating SemanitcUI based flash[:notices]
-        def flash_class(level)
-          case level
-          when 'success'
-            'positive'
-          when 'error'
-            'negative'
-          when 'alert'
-            'negative'
-          when 'notice'
-            'info'
-          else
-            'info'
+          # For generating SemanitcUI based flash[:notices]
+          def flash_class(level)
+            case level
+            when 'success'
+              'positive'
+            when 'error'
+              'negative'
+            when 'alert'
+              'negative'
+            when 'notice'
+              'info'
+            else
+              'info'
+            end
           end
-        end
       HELPER
         inject_into_file 'app/helpers/application_helper.rb', helper_str, after: "module ApplicationHelper\n", force: true
+      end
+
+      def invoke_devise_generator
+        # Generate semantic based devise views if devise is being used
+        invoke('semantic:devise') if options[:devise]
       end
     end
   end

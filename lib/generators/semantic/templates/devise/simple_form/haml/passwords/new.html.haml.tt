@@ -1,0 +1,24 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    %h2.ui.center.aligned.dividing.header.teal
+      %i.lock.icon
+      <%- if options[:metatags] %>
+      = title('Forgot your password?')
+      <% else -%>
+      | Forgot your password?
+      <%- end %>
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = f.error_notification
+      .field
+        = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
+      .actions
+        = f.button :submit, 'Send me reset password instructions', class: 'btn btn-primary btn-block btn-lg'
+    .ui.horizontal.divider or
+    .ui.horizontal.list
+      = render "devise/shared/links"
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

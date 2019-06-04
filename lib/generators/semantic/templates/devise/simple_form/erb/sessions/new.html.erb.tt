@@ -1,0 +1,32 @@
+<style type="text/css">
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }
+</style>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <%- if options[:metatags] %>
+    <h2 class="ui center aligned dividing header teal"><i class="sign in icon"></i><%%= title('Log in') %></h2>
+    <% else -%>
+    <h2 class="ui center aligned dividing header teal"><i class="sign in icon"></i>Log in</h2>
+    <%- end %>
+    <div class="ui large form ">
+    <%%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%%= f.input :email, required: false, autofocus: true, input_html: { autocomplete: 'email' } %>
+        <%%= f.input :password, required: false, input_html: { autocomplete: 'current-password' } %>
+        <%%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="actions">
+        <%%= f.button :submit, 'Log in' %>
+      </div>
+    <%% end %>
+    <div class="ui horizontal divider">or</div>
+      <div class="ui horizontal list">
+        <%%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

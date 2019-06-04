@@ -1,0 +1,27 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    %h2.ui.center.aligned.dividing.header.teal
+      %i.lock.icon
+      <%- if options[:metatags] %>
+      = title('Change your password')
+      <% else -%>
+      | Change your password
+      <%- end %>
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.error_notification
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      .field
+        = f.input :password, label: 'New password', required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
+        = f.input :password_confirmation, label: 'Confirm your new password', required: true, input_html: { autocomplete: 'new-password' }
+      .actions
+        = f.button :submit, 'Change my password'
+    .ui.horizontal.divider or
+    .ui.horizontal.list
+      = render "devise/shared/links"
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

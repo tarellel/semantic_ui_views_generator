@@ -1,0 +1,44 @@
+<style type="text/css">
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }
+</style>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <%- if options[:metatags] %>
+    <h2 class="ui center aligned dividing header teal"><i class="lock icon"></i><%%= title('Change your password') %></h2>
+    <% else -%>
+    <h2 class="ui center aligned dividing header teal"><i class="lock icon"></i>Change your password</h2>
+    <%- end %>
+    <div class="ui form large <%%= "error" if resource.errors.any? %>">
+      <%%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <div class="ui error message">
+          <%%= render 'devise/shared/error_messages' %>
+        </div>
+        <%%= f.hidden_field :reset_password_token %>
+        <div class="field">
+          <%%= f.label :password, "New password" %>
+          <%% if @minimum_password_length %>
+            <div class="ui pointing below label">
+              <%%= @minimum_password_length %> characters minimum
+            </div>
+          <%% end %>
+          <%%= f.password_field :password, autofocus: true, autocomplete: "off" , placeholder: "Enter new password" %>
+        </div>
+        <div class="field">
+          <%%= f.label :password_confirmation, "Confirm new password" %>
+          <%%= f.password_field :password_confirmation, autocomplete: "off" , placeholder: "Confirm new password" %>
+        </div>
+        <div class="actions">
+          <%%= f.submit "Change my password",class: "ui submit button teal fluid" %>
+        </div>
+      <%% end %>
+      <div class="ui horizontal divider">or</div>
+      <div class="ui horizontal list">
+        <%%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.ui.middle.aligned.center.aligned.grid.grey
+  .column
+  %h2.ui.center.aligned.dividing.header.teal
+    %i.signup.icon
+    <%- if options[:metatags] %>
+    = title('Sign up')
+    <% else -%>
+    | Sign up
+    <%- end %>
+    %div{class: "ui large form #{"error" if resource.errors.any?}"}
+      = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        .ui.error.message
+          = render 'devise/shared/error_messages'
+        .field
+          = f.input :email, required: true, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), input_html: { autocomplete: "email" }
+        .actions
+          = f.button :submit, 'Resend confirmation instructions'
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render 'devise/shared/links'
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

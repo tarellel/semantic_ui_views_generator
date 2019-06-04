@@ -1,0 +1,35 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    %h2.ui.center.aligned.dividing.header.teal
+      %i.lock.icon
+      <%- if options[:metatags] %>
+      = title('Change your password')
+      <% else -%>
+      | Change your password
+      <%- end %>
+    %div{class: "ui form large #{"error" if resource.errors.any?}"}
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        .ui.error.message
+          = render 'devise/shared/error_messages'
+        = f.hidden_field :reset_password_token
+        .field
+          = f.label :password, "New password"
+          - if @minimum_password_length
+            .ui.pointing.below.label
+              = @minimum_password_length
+              characters minimum
+          = f.password_field :password, autofocus: true, autocomplete: "off" , placeholder: "Enter new password"
+        .field
+          = f.label :password_confirmation, "Confirm new password"
+          = f.password_field :password_confirmation, autocomplete: "off" , placeholder: "Confirm new password"
+        .actions
+          = f.submit "Change my password",class: "ui submit button teal fluid"
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+:css
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

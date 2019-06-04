@@ -1,0 +1,29 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    <%- if options[:metatags] %>
+    h2.ui.center.aligned.dividing.header.teal
+      i.signup.icon
+      = title("Sign up")
+    <%- else %>
+    h2.ui.center.aligned.dividing.header.teal
+      i.signup.icon
+      | Sign up
+    <%- end %>
+    div class=("ui large form #{"error" if resource.errors.any?}")
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = f.error_notification
+        .field
+          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
+          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
+          = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
+        .actions
+          = f.button :submit, 'Sign up'
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+css:
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

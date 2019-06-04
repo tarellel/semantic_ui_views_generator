@@ -1,0 +1,28 @@
+.ui.middle.aligned.center.aligned.grid
+  .column
+    h2.ui.center.aligned.dividing.header.teal
+      i.lock.icon
+      <%- if options[:metatags] %>
+      = title('Forgot your password?')
+      <% else -%>
+      | Forgot your password?
+      <%- end %>
+    div class=("ui form large #{"error" if resource.errors.any?}")
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        .ui.error.message
+          = render 'devise/shared/error_messages'
+        .field
+          = f.label :email
+          = f.email_field :email, autofocus: true ,placeholder: "Enter your registered email"
+        br
+        .actions
+          = f.submit "Send me reset password instructions",class: "ui submit button teal fluid"
+      .ui.horizontal.divider or
+      .ui.horizontal.list
+        = render "devise/shared/links"
+css:
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }

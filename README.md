@@ -47,6 +47,8 @@ Options:
                                             # Default: false
 --layout                                    # Over-write your application layout file with a Semantic UI based layout
                                             # Default: false
+--devise                                    # If you want to generate semantic based devise views
+                                            # Default: false
 ```
 
 ## Options
@@ -106,6 +108,11 @@ rails g semantic:install --pagination
 Generate semantic views with slim and using simple_form
 ```shell
 rails g semantic:install --template_engine=slim --simpleform
+```
+
+Generate semantic scaffolds, devise views, while using simpleform, metatags, and slim template engine.
+```shell
+ rails g semantic:install --devise --simpleform --metatags --template_engine=slim
 ```
 
 ### Extras

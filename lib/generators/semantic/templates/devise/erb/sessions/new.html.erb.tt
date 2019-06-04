@@ -1,0 +1,47 @@
+<style type="text/css">
+  body > .grid { height: 90%; }
+  .column { max-width: 450px; }
+  @media (min-width: 768px){
+    .column { max-width: 600px; }
+  }
+</style>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <%- if options[:metatags] %>
+    <h2 class="ui center aligned dividing header teal"><i class="sign in icon"></i><%%= title('Log in') %></h2>
+    <% else -%>
+    <h2 class="ui center aligned dividing header teal"><i class="sign in icon"></i>Log in</h2>
+    <%- end %>
+    <div class="ui large form ">
+      <%%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%%= f.label :email %>
+          <div class="ui left icon input">
+          <%%= f.email_field :email, autofocus: true ,placeholder:"Email"%>
+          <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="field">
+          <%%= f.label :password %>
+          <div class="ui left icon input">
+          <%%= f.password_field :password, autocomplete: "off" ,placeholder:"Password"%>
+          <i class="lock icon"></i>
+          </div>
+        </div>
+        <%% if devise_mapping.rememberable? -%>
+          <div class="ui checkbox">
+            <%%= f.check_box :remember_me %>
+            <%%= f.label :remember_me %> <br>
+          </div>
+        <%% end -%>
+        <div class="actions">
+          <%%= f.submit "Log in", class: "ui submit button fluid teal"%>
+        </div>
+      <%% end %>
+    <div class="ui horizontal divider">or</div>
+      <div class="ui horizontal list">
+        <%%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
