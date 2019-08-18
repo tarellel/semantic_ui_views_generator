@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "semantic_ui_views_generator/version"
+require 'semantic_ui_views_generator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'semantic_ui_views_generator'
@@ -33,8 +33,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'semantic-ui-sass', '~> 2.4.0.1'
-  spec.add_runtime_dependency 'railties', '>= 5.0'
+  spec.add_runtime_dependency 'railties', '>= 4.0'
   spec.add_development_dependency 'bundler', '>= 1.17'
   spec.add_development_dependency 'rake', '>= 10.0'
 end
