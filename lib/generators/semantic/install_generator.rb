@@ -6,14 +6,29 @@ module Semantic
     class InstallGenerator < ::Rails::Generators::Base
       desc 'Overwrite Rails scaffold templates with Semantic UI based templates'
       source_root ::File.expand_path('../templates', __FILE__)
-
-      class_option :template_engine, type: :string, default: 'erb', aliases: '-t', desc: 'Set template engine to generate the views with'
+      class_option :template_engine,    type: :string, default: 'erb', aliases: '-t', enum: %w[erb slim haml],
+                                        desc: 'Set template engine to generate the views with'
       # Boolean flags that can be flagged by adding to the generator call ie: --pagination or --metag_tags
-      class_option :devise, type: :boolean, default: false, desc: 'If views for devise will be required by the generator'
-      class_option :layout, type: :boolean, default: false, aliases: "-l", desc: 'Over-write your application layout file with a Semantic UI based layout'
-      class_option :metatags, type: :boolean, default: false, aliases: "-m", desc: 'If views will assign pages title using metatags gem'
-      class_option :pagination, type: :boolean, default: false, aliases: '-p', desc: 'Toggle if pagination will be used with the index view/controller (based off of Pagy)'
-      class_option :simpleform, type: :boolean, default: false, aliases: '-sf', desc: 'Enable SimpleForms for the form generating'
+      class_option :devise,             type: :boolean, default: false,
+                                        desc: 'If views for devise will be required by the generator'
+
+      class_option :layout,             type: :boolean, default: false, aliases: '-l',
+                                        desc: 'Over-write your application layout file with a Semantic UI based layout'
+
+      class_option :metatags,           type: :boolean, default: false, aliases: '-m',
+                                        desc: 'If views will assign pages title using metatags gem'
+
+      class_option :pagination,         type: :boolean, default: false, aliases: '-p',
+                                        desc: 'Toggle if pagination will be used with the index view/controller (based off of Pagy)'
+
+      class_option :simpleform,         type: :boolean, default: false, aliases: '-sf',
+                                        desc: 'Enable SimpleForms for the form generating'
+
+      class_option :skip_javascript,    type: :boolean, default: false,
+                                        desc: 'Skip adding javascript_include_tag or javascript_pack_tag to the layouts'
+
+      class_option :skip_turbolinks,    type: :boolean, default: false,
+                                        desc: 'Skip associating assets and views with turbolinks'
 
       def copy_scaffold_views
         %w[edit index show new].each do |file|
