@@ -1,5 +1,4 @@
-
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'semantic_ui_views_generator/version'
 
@@ -9,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Brandon Hicks']
   spec.email         = ['tarellel@gmail.com']
 
-  spec.summary       = %q{Semantic UI generators for overwriting the default Rails view generators}
-  spec.description   = %q{A Rails based generator for creating Semantic UI Views/layouts for for your application}
+  spec.summary       = 'Semantic UI generators for overwriting the default Rails view generators'
+  spec.description   = 'A Rails based generator for creating Semantic UI Views/layouts for for your application'
   spec.homepage      = 'https://github.com/tarellel/semantic_ui_views_generator'
   spec.license       = 'MIT'
 
@@ -35,5 +34,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'railties', '>= 4.0', '<= 7'
   spec.add_development_dependency 'bundler', '>= 1.17', '<= 3'
-  spec.add_development_dependency 'rake', '>= 10.0'
+  spec.add_development_dependency 'rake', '>= 7.0', '<= 20.0'
 end
